@@ -7,7 +7,7 @@
     <body>
         <script>
             function randInt(upperBound) {
-
+                return Math.floor((Math.random() * upperBound) + 1);
             }
 
             function playerPlay () {
@@ -15,11 +15,56 @@
             }
 
             function computerPlay() {
-
+                let selection = randInt(3);
+                if (selection === 1) {
+                    return "Rock"
+                }
+                else if (selection === 2) {
+                    return "Paper"
+                }
+                else {
+                    return "Scissors"
+                }
             }
 
             function playRound (playerSelection, computerSelection) {
+                let pS = playerSelection.toLowerCase();
+                let cS = computerSelection.toLowerCase();
 
+                if (pS === cS) {
+                    return `You Tie! ${playerSelection} ties ${computerSelection}`;
+                }
+                else if (pS === "rock") {
+                    if (cS === "paper") {
+                        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                    }
+                    else {
+                        return `You Win! ${playerSelection} beats ${computerSelection}`;
+                    }
+                }
+                else if (pS === "paper") {
+                    if (cS === "scissors") {
+                        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                    }
+                    else {
+                        return `You Win! ${playerSelection} beats ${computerSelection}`;
+                    }
+                }
+                else if (pS === "scissors") {
+                    if (cS === "rock") {
+                        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                    }
+                    else {
+                        return `You Win! ${playerSelection} beats ${computerSelection}`;
+                    }
+                }
+                else {
+                    return "Please enter a valid selection";
+                }
+            }
+
+            function game() {
+                
             }
 
             let playerSelection = playerPlay();
