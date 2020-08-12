@@ -32,44 +32,90 @@
                 let cS = computerSelection.toLowerCase();
 
                 if (pS === cS) {
-                    return `You Tie! ${playerSelection} ties ${computerSelection}`;
+                    // return `You Tie! ${playerSelection} ties ${computerSelection}`;
+                    return 0;
                 }
                 else if (pS === "rock") {
                     if (cS === "paper") {
-                        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                        // return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                        return 1;
                     }
                     else {
-                        return `You Win! ${playerSelection} beats ${computerSelection}`;
+                        // return `You Win! ${playerSelection} beats ${computerSelection}`;
+                        return 2;
                     }
                 }
                 else if (pS === "paper") {
                     if (cS === "scissors") {
-                        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                        // return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                        return 1;
                     }
                     else {
-                        return `You Win! ${playerSelection} beats ${computerSelection}`;
+                        // return `You Win! ${playerSelection} beats ${computerSelection}`;
+                        return 2;
                     }
                 }
                 else if (pS === "scissors") {
                     if (cS === "rock") {
-                        return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                        // return `You Lose! ${computerSelection} beats ${playerSelection}`;
+                        return 1;
                     }
                     else {
-                        return `You Win! ${playerSelection} beats ${computerSelection}`;
+                        // return `You Win! ${playerSelection} beats ${computerSelection}`;
+                        return 2;
                     }
                 }
                 else {
-                    return "Please enter a valid selection";
+                    // return "Please enter a valid selection";
+                    return 0;
                 }
             }
 
-            function game() {
-                
+            function game(rounds) {
+                let playerScore = 0;
+                let compScore = 0;
+                for (let i = 0; i <= rounds; i++) {
+                    if ((playerScore === Math.ceil(rounds/2)) || (compScore === Math.ceil(rounds/2))) {
+                        if (playerScore > compScore) {
+                            return `Congratulations! You won by a score of ${playerScore}-${compScore}`
+                        }
+                        else if (compScore > playerScore) {
+                            return `Sorry. You lost by a score of ${compScore}-${playerScore}`
+                        }
+                        else {
+                            return `You tied by a score of ${playerScore}-${compScore}`
+                        }
+                    }
+                    else {
+                        let playerSelection = playerPlay();
+                        let computerSelection = computerPlay();
+                        let result = playRound(playerSelection, computerSelection);
+                        console.log("Result =")
+                        console.log(result);
+
+                        if (result === 1) {
+                            compScore++;
+                        }
+                        else if (result === 2) {
+                            playerScore++;
+                        }
+                        else {
+                            i--;
+                            console.log("tied")
+                        }
+
+                        console.log("i =");
+                        console.log(i);
+                        console.log("playerScore =")
+                        console.log(playerScore);
+                        console.log("compScore =")
+                        console.log(compScore);
+                    }
+                }
             }
 
-            let playerSelection = playerPlay();
-            let computerSelection = computerPlay();
-            console.log(playRound(playerSelection, computerSelection));
+            console.log(game(5));
+
         </script>
     </body>
 </html>
